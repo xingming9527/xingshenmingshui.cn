@@ -1,0 +1,53 @@
+baseURL = 'https://xingshenmingshui.cn/'
+
+# [en, zh-cn, fr, ...] 设置默认的语言
+defaultContentLanguage = "zh-cn"
+
+# 网站语言, 仅在这里 CN 大写
+languageCode = "zh-CN"
+
+# 是否包括中日韩文字
+hasCJKLanguage = true
+
+# 网站名称
+title = "姓甚名谁的数字花园"
+
+# 默认主题
+theme = "DoIt"
+
+[params]
+    # DoIt 主题版本
+    version = "0.2.X"
+
+
+    # 页面头部导航栏配置
+    [params.header]
+        # 桌面端导航栏模式 ("fixed", "normal", "auto")
+        desktopMode = "fixed"
+        # 移动端导航栏模式 ("fixed", "normal", "auto")
+        mobileMode = "auto"
+        # 主题切换模式 ("switch", "select")
+        themeChangeMode = "select"
+
+        [params.header.title]
+        # LOGO 的 URL
+        logo = ""
+        # 标题名称
+        name = "姓甚名谁的数字花园"
+        # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+        pre = ""
+        # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+        post = ""
+        # 是否为标题显示打字机动画
+        typeit = true
+
+    # 页面底部信息配置
+    [params.footer]
+        # 网站创立年份
+        since = 2023
+
+        # 是否显示作者
+        author = false
+
+        # 许可协议信息 (支持 HTML 格式)
+        license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
