@@ -1,6 +1,6 @@
 ---
 title: "burpsuite使用指南"
-categories: ["默认", "web扫描器"]
+categories: ["burpsuite", "web扫描器"]
 tags: 
   - hugo
   - blog

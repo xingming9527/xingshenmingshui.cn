@@ -52,6 +52,10 @@ theme = "DoIt"
         # 许可协议信息 (支持 HTML 格式)
         license = '<a rel="license external nofollow noopener noreffer" href="https://www.apache.org/licenses/" target="_blank">Apache License 2.0</a>'
 
+        # 托管服务信息 (支持 HTML 格式)
+        # <a title="Github Pages" href="https://docs.github.com/en/pages/" target="_blank" rel="noopener noreffer">GitHub Pages</a>
+        hostedOn = '<a title="Cloudflare Pages" href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreffer">Cloudflare Pages</a>'
+
     # 主页配置
     [params.home]
     # 主页个人信息
@@ -189,7 +193,7 @@ theme = "DoIt"
         # 光标的闪烁速度 (单位是毫秒)
         cursorSpeed = 1000
         # 光标的字符 (支持 HTML 格式)
-        cursorChar = " |"
+        cursorChar = " _"
         # 打字结束之后光标的持续时间 (单位是毫秒, "-1" 代表无限大)
         duration = -1
 
