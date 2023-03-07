@@ -2,8 +2,6 @@
 title: "burpsuite使用指南"
 categories: ["burpsuite", "web扫描器"]
 tags: 
-  - hugo
-  - blog
   - burpsuite
   - web扫描器
 date: 2022-07-15T09:16:09+08:00
