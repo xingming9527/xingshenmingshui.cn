@@ -8,20 +8,20 @@ lastmod: 2023-03-09T09:16:09+08:00
 draft: false
 ---
 
-# nginx_waf介绍
+## nginx_waf介绍
 
 nginx waf，顾名思义，就是依赖nginx的waf，也可以说是nginx插件waf。
 它因为开发简便（lua的编程级灵活性）、性能卓越（nginx卓越性能）、部署简单、可扩展性高等优势，逐渐开源WAF的主流。
 现在nginx官方支持[[modsecurity]]的模块，后续可以研究研究。[使用 ModSecurity/App Protect 模块构建 NGINX WAF](https://www.bilibili.com/video/BV15K41137h4/?vd_source=e986128db314de8afe0458b76b96996b)
 
-## nginx + lua原理
+### nginx + lua原理
 ![nginx_waf_20230307232048952](https://img.ivansli.com/images/nginx_waf_20230307232048952.png)
 Lua可以嵌入nginx处理请求或者应答内容的过程中进行过滤。
 
-# nginx waf安装
+## nginx waf安装
 安装在[[CentOS7]]上（最小化安装后未设置任何内容）。
 
-## OpenResty安装
+### OpenResty安装
 
 参考[使用Nginx+Lua实现的WAF（版本v1.0）](https://github.com/unixhot/waf)
 
@@ -59,7 +59,7 @@ nginx: configuration file /usr/local/openresty-1.17.8.2/nginx/conf/nginx.conf te
 <p>hello, world</p>
 ```
 
-### WAF部署
+#### WAF部署
 
 这里是unixhot自己写好的规则，可以借鉴一下。
 
@@ -79,7 +79,7 @@ nginx: configuration file /usr/local/openresty-1.17.8.2/nginx/conf/nginx.conf te
 ```
 
 
-## Nginx + Lua源码编译部署(不推荐)
+### Nginx + Lua源码编译部署(不推荐)
 ，主要参考：[【技术专栏】使用开源软件建设大规模WAF集群](https://mp.weixin.qq.com/s/8bwR8CQp6uBPXx-RaqPeMw)
 
 - 安装luajit
@@ -131,7 +131,7 @@ Connection: keep-alive
 Accept-Ranges: bytes
 ```
 
-### WAF部署（写第一条waf拦截规则）
+#### WAF部署（写第一条waf拦截规则）
 
 - 配置规则，在nginx.conf的http配置段添加如下5行
 ```shell
@@ -186,10 +186,10 @@ Accept-Ranges: bytes
 You are blocked by douge!
 ```
 
-# Nginx+Lua编写WAF
+## Nginx+Lua编写WAF
 [Nginx+Lua编写WAF](Nginx+Lua编写WAF.md)
 
-# waf集群搭建
+## waf集群搭建
 
 - 服务器角色
 	- 负载均衡集群
@@ -201,18 +201,18 @@ You are blocked by douge!
 - 以上服务器角色都支持横向扩展，几乎没有性能瓶颈。
 ![WAF_20230308144505681](https://img.ivansli.com/images/WAF_20230308144505681.png)
 
-## 配置管理
+### 配置管理
 
 在大规模的WAF集群中，不太可能手动去更新规则。第一服务器数量太多，效率慢；第二，只要是人工还极易出错。
 那么就需要一个集群专门管理WAF规则，然后其他WAF服务器去同步这个规则。常用的配置同步方式，使用ZooKeeper。
 
-### ZooKeeper实现nginx配置订阅
+#### ZooKeeper实现nginx配置订阅
 
 在最简化设计时，我们可以让每台WAF的配置完全一样，这样的好处是可以随时添加服务器，任何一个服务器宕机都不会影响WAF服务，而且整个系统的架构会非常简洁。每台WAF只要使用python脚本订阅ZK中的配置，一旦发生变更，获取最新配置，更新相关配置文件，给nginx发送信号热加载新配置文件即可（nginx -s reload）。
 
 ![nginx_waf_20230308161433221](https://img.ivansli.com/images/nginx_waf_20230308161433221.png)
 
-### ZooKeeper安装
+#### ZooKeeper安装
 
 - **安装jdk**
 ```shell
@@ -245,7 +245,7 @@ server.3=zoo3:2888:3888
 ```
 建议至少三个zk实例，而且分布在不同服务器上，可以和WAF混合部署，因为对性能消耗很小。
 
-### 订阅WAF规则变更
+#### 订阅WAF规则变更
 
 核心python代码为：
 ```python
@@ -263,7 +263,7 @@ server.3=zoo3:2888:3888
 >>> data=zookeeper.get(zk,"/zk_waf_rule",myWatch)
 ```
 
-## 日志处理
+### 日志处理
 
 ![nginx_waf_20230308170047364](https://img.ivansli.com/images/nginx_waf_20230308170047364.png)
 
@@ -280,7 +280,7 @@ server.3=zoo3:2888:3888
 - 跑HMM分析漏报
 - 跑语义分析漏报
 
-## WAF集群总结
+### WAF集群总结
 
 生产环境中，远比这个复杂，自研需要谨慎，BAT3以及传统4强的WAF团队人数据说都不是个位数：
 - nginx层面需要大量优化提高性能
@@ -288,7 +288,7 @@ server.3=zoo3:2888:3888
 - 开源大数据框架storm、hdfs、spark稳定的运行绝非易事，需要专人维护
 - nginx+lua架构出于性能考虑单向匹配规则，误报漏报很难取舍
 
-## WAF集群监控
+### WAF集群监控
 
 **平时多监控，出事少背锅**
 
