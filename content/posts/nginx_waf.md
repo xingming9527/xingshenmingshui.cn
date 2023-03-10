@@ -12,10 +12,11 @@ draft: false
 
 nginx waf，顾名思义，就是依赖nginx的waf，也可以说是nginx插件waf。
 它因为开发简便（lua的编程级灵活性）、性能卓越（nginx卓越性能）、部署简单、可扩展性高等优势，逐渐开源WAF的主流。
-现在nginx官方支持[[modsecurity]]的模块，后续可以研究研究。[使用 ModSecurity/App Protect 模块构建 NGINX WAF](https://www.bilibili.com/video/BV15K41137h4/?vd_source=e986128db314de8afe0458b76b96996b)
+现在nginx官方支持modsecurity的模块，后续可以研究研究。[使用 ModSecurity/App Protect 模块构建 NGINX WAF](https://www.bilibili.com/video/BV15K41137h4/?vd_source=e986128db314de8afe0458b76b96996b)
 
 ### nginx + lua原理
 ![nginx_waf_20230307232048952](https://img.ivansli.com/images/nginx_waf_20230307232048952.png)
+<br />
 Lua可以嵌入nginx处理请求或者应答内容的过程中进行过滤。
 
 ## nginx waf安装
@@ -204,7 +205,7 @@ You are blocked by douge!
 ### 配置管理
 
 在大规模的WAF集群中，不太可能手动去更新规则。第一服务器数量太多，效率慢；第二，只要是人工还极易出错。
-那么就需要一个集群专门管理WAF规则，然后其他WAF服务器去同步这个规则。常用的配置同步方式，使用ZooKeeper。
+那么就需要一个集群专门管理WAF规则，然后其他WAF服务器去同步这个规则。常用的配置同步方式，使用ZooKeeper + python脚本 + nginx、或者openresty postgresql
 
 #### ZooKeeper实现nginx配置订阅
 
