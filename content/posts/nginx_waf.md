@@ -1,8 +1,9 @@
 ---
 title: "nginx waf"
-categories: ["waf"]
+categories: ["waf", "互联网企业安全"]
 tags: 
   - waf
+  - 互联网企业安全
 date: 2023-03-09T09:16:09+08:00
 lastmod: 2023-03-09T09:16:09+08:00
 draft: false
